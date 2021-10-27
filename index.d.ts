@@ -8,6 +8,7 @@ export interface IOffer {
   floorPrice: { amount: number; currency: string };
   tokenId: number;
   tokenName: string;
+  offerUrl: string;
 }
 
 export interface IFnOpts {
