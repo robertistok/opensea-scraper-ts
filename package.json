@@ -1,6 +1,6 @@
 {
   "name": "opensea-scraper-ts",
-  "version": "0.1",
+  "version": "0.1.0",
   "description": "Opensea Scraper",
   "main": "src/index.js",
   "typings": "./index.d.ts",
