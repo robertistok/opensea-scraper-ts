@@ -7,10 +7,13 @@ const axios = require("axios");
 const basicInfo = async (slug) => {
   const response = await axios.get(`https://api.opensea.io/collection/${slug}`);
   const collectionObj = response.data.collection;
+  const stats = _getStats(collectionObj);
   return {
     slug: slug,
     name: _getName(collectionObj),
     symbol: _getSymbol(collectionObj),
+    stats: _getStats(collectionObj),
+    floorPrice: stats ? stats.floorPrice : null,
     description: _getDescription(collectionObj),
     contractAddress: _getContractAddress(collectionObj),
     safelistRequestStatus: _getSafelistRequestStatus(collectionObj),
@@ -31,6 +34,13 @@ const basicInfo = async (slug) => {
   };
 };
 
+function _getStats(collectionObj) {
+  try {
+    return camelCase(collectionObj.stats);
+  } catch (err) {
+    return null;
+  }
+}
 function _getName(collectionObj) {
   try {
     return collectionObj.name;
@@ -55,13 +65,6 @@ function _getBannerImageUrl(collectionObj) {
 function _getImageUrl(collectionObj) {
   try {
     return collectionObj.image_url;
-  } catch (err) {
-    return null;
-  }
-}
-function _getStats(collectionObj) {
-  try {
-    return camelCase(collectionObj.stats);
   } catch (err) {
     return null;
   }
