@@ -1,7 +1,7 @@
 {
-  "name": "opensea-scraper",
-  "version": "3.1.1",
-  "description": "Scraping accurate floor prices from opensea, because the API returns inacurate floor prices.",
+  "name": "opensea-scraper-ts",
+  "version": "0.1",
+  "description": "Opensea Scraper",
   "main": "src/index.js",
   "typings": "./index.d.ts",
   "scripts": {
@@ -21,7 +21,7 @@
     "cryptocurrency",
     "erc-721"
   ],
-  "author": "dcts",
+  "author": "dcts/robertistok",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",

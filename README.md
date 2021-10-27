@@ -1,3 +1,5 @@
+This package is a fork of the [Opensea Scraper](https://github.com/dcts/opensea-scraper) project with extra features
+
 # Opensea Scraper
 
 ⚠ **Problem**: NFT floor prices returned by the Opensea API are not accurate (they lag at least 2 hours, sometimes even a full day it seems). Here is an example of cool-cats floor price actually being 8.5, but the API returns 9.4:
