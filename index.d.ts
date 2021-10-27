@@ -10,7 +10,7 @@ interface IOffer {
   tokenName: string;
 }
 
-declare module "opensea-scraper" {
+declare module "opensea-scraper-ts" {
   export function basicInfo(slug: string): Promise<Record<string, any>>;
   export function floorPrice(
     slug: string,
