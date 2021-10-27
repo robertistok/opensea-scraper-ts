@@ -6,13 +6,14 @@ const offers = require("./functions/offers.js");
 const offersByUrl = require("./functions/offersByUrl.js");
 const getInstanceWithPuppeteer = require("./functions/getInstanceWithPuppeteer.js");
 
-module.exports = {
+const OpenseaScraper = {
   basicInfo,
   floorPrice,
   floorPriceByUrl,
   rankings,
   offers,
   offersByUrl,
-  getInstanceWithPuppeteer
+  getInstanceWithPuppeteer,
 };
 
+module.exports = OpenseaScraper;
