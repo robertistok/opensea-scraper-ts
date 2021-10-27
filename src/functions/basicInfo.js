@@ -11,13 +11,13 @@ const basicInfo = async (slug) => {
     slug: slug,
     name: _getName(collectionObj),
     symbol: _getSymbol(collectionObj),
-    floorPrice: _getFloorPrice(collectionObj),
     description: _getDescription(collectionObj),
     contractAddress: _getContractAddress(collectionObj),
     safelistRequestStatus: _getSafelistRequestStatus(collectionObj),
     isVerified: _isVerified(collectionObj),
     bannerImageUrl: _getBannerImageUrl(collectionObj),
     imageUrl: _getImageUrl(collectionObj),
+    stats: _getStats(collectionObj),
     social: {
       discord: _getDiscord(collectionObj),
       medium: _getMedium(collectionObj),
@@ -29,103 +29,103 @@ const basicInfo = async (slug) => {
     },
     createdAt: new Date(),
   };
-}
+};
 
 function _getName(collectionObj) {
   try {
     return collectionObj.name;
-  } catch(err) {
+  } catch (err) {
     return null;
   }
 }
 function _getContractAddress(collectionObj) {
   try {
     return collectionObj.primary_asset_contracts[0].address;
-  } catch(err) {
-    return null;
-  }
-}
-function _getFloorPrice(collectionObj) {
-  try {
-    return collectionObj.stats.floor_price;
-  } catch(err) {
+  } catch (err) {
     return null;
   }
 }
 function _getBannerImageUrl(collectionObj) {
   try {
     return collectionObj.banner_image_url;
-  } catch(err) {
+  } catch (err) {
     return null;
   }
 }
 function _getImageUrl(collectionObj) {
   try {
     return collectionObj.image_url;
-  } catch(err) {
+  } catch (err) {
+    return null;
+  }
+}
+function _getStats(collectionObj) {
+  try {
+    return camelCase(collectionObj.stats);
+  } catch (err) {
     return null;
   }
 }
 function _getDiscord(collectionObj) {
   try {
     return collectionObj.discord_url;
-  } catch(err) {
+  } catch (err) {
     return null;
   }
 }
 function _getMedium(collectionObj) {
   try {
     return collectionObj.medium_username;
-  } catch(err) {
+  } catch (err) {
     return null;
   }
 }
 function _getTwitter(collectionObj) {
   try {
     return collectionObj.twitter_username;
-  } catch(err) {
+  } catch (err) {
     return null;
   }
 }
 function _getWebsite(collectionObj) {
   try {
     return collectionObj.external_url;
-  } catch(err) {
+  } catch (err) {
     return null;
   }
 }
 function _getTelegram(collectionObj) {
   try {
     return collectionObj.telegram_url;
-  } catch(err) {
+  } catch (err) {
     return null;
   }
 }
 function _getInstagram(collectionObj) {
   try {
     return collectionObj.instagram_username;
-  } catch(err) {
+  } catch (err) {
     return null;
   }
 }
 function _getWiki(collectionObj) {
   try {
     return collectionObj.wiki_url;
-  } catch(err) {
+  } catch (err) {
     return null;
   }
 }
 function _getDescription(collectionObj) {
   try {
     return collectionObj.description;
-  } catch(err) {
+  } catch (err) {
     return null;
   }
 }
 function _getSymbol(collectionObj) {
   try {
     return collectionObj.primary_asset_contracts[0].symbol;
-  } catch(err) {
+  } catch (err) {
     return null;
   }
 }
@@ -143,6 +143,20 @@ function _isVerified(collectionObj) {
   } catch (error) {
     return null;
   }
+}
+
+function camelCase(obj) {
+  let newObj = {};
+  for (d in obj) {
+    if (obj.hasOwnProperty(d)) {
+      newObj[
+        d.replace(/(\_\w)/g, function (k) {
+          return k[1].toUpperCase();
+        })
+      ] = obj[d];
+    }
+  }
+  return newObj;
 }
 
 module.exports = basicInfo;
