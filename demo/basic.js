@@ -1,10 +1,10 @@
-const OpenseaScraper = require("./src/index.js");
+const OpenseaScraper = require("../src/index.js");
 
 // which NFT project to scrape?
 const slug = "cool-cats-nft";
 console.log(`===>>> ${slug} <<<===`);
 
-(async () => {
+(async function run() {
   // basic info
   console.log(`\n\n\n\n✅ === OpenseaScraper.basicInfo() ===`);
   const basicInfo = await OpenseaScraper.basicInfo(slug);

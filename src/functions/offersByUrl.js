@@ -18,11 +18,15 @@ puppeteer.use(StealthPlugin());
  *   tokenId: 234
  * }
  */
-const offersByUrl = async (url, resultSize = 10, mode = "headless") => {
-  const browser = await puppeteer.launch({
-    headless: mode === "debug" ? false : true,
-    args: ['--start-maximized'],
-  });
+const offersByUrl = async (url, resultSize = 10, opts = {}) => {
+  const { browser: providedBrowser, mode = "headless" } = opts;
+  let browser = providedBrowser;
+  if (!browser) {
+    browser = await puppeteer.launch({
+      headless: mode === "debug" ? false : true,
+      args: ['--start-maximized'],
+    });
+  }
   const page = await browser.newPage();
   await page.goto(url);
 
@@ -34,7 +38,7 @@ const offersByUrl = async (url, resultSize = 10, mode = "headless") => {
 
   // scrape offers until target resultsize reached or bottom of page reached
   const offersByUrl = await scrollAndFetchOffers(page, resultSize);
-  if (mode !== "debug") {
+  if (!providedBrowser) {
     await browser.close();
   }
   const offersSorted = offersByUrl.sort((a,b) => a.floorPrice.amount - b.floorPrice.amount)
