@@ -1,16 +1,16 @@
-interface IRanking {
+export interface IRanking {
   slug: string;
   thumbanil?: string;
   rank: number;
 }
 
-interface IOffer {
+export interface IOffer {
   floorPrice: { amount: number; currency: string };
   tokenId: number;
   tokenName: string;
 }
 
-interface IFnOpts {
+export interface IFnOpts {
   mode?: string;
   browser?: any;
 }
