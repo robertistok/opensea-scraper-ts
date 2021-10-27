@@ -11,6 +11,11 @@ export interface IOffer {
   offerUrl: string;
 }
 
+interface IOfferRturnValue {
+  offers: IOffer[];
+  stats: { totalOffersCount: number };
+}
+
 export interface IFnOpts {
   mode?: string;
   browser?: any;
@@ -29,12 +34,12 @@ interface IScraperInstance {
     nPages?: string,
     resultSize?: number,
     opts?: IFnOpts
-  ) => Promise<IOffer[]>;
+  ) => Promise<IOfferRturnValue>;
   offersByUrl: (
     url: string,
     resultSize?: number,
     opts?: IFnOpts
-  ) => Promise<IOffer[]>;
+  ) => Promise<IOfferRturnValue>;
 }
 
 declare module "opensea-scraper-ts" {
@@ -56,10 +61,10 @@ declare module "opensea-scraper-ts" {
     nPages?: string,
     resultSize?: number,
     opts?: IFnOpts
-  ): Promise<IOffer[]>;
+  ): Promise<IOfferRturnValue>;
   export function offersByUrl(
     url: string,
     resultSize?: number,
     opts?: IFnOpts
-  ): Promise<IOffer[]>;
+  ): Promise<IOfferRturnValue>;
 }
