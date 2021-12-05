@@ -23,7 +23,7 @@ interface IOptions {
   sort: boolean,
 }
 
-declare module "opensea-scraper" {
+declare module "opensea-scraper-ts" {
   export function basicInfo(slug: string): Promise<Record<string, any>>;
   export function rankings(
     nbrOfPages?: string,
